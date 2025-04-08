@@ -1,0 +1,177 @@
+:root {
+	--rosa: #ffb3b3;
+	--lila: #e0aaff;
+	--naranja: #f4a261;
+	--verde: #99ffa8;
+	--blanco: #fff7f2;
+	--magenta: #f58ccd;
+	--cyan: #7dffd0;
+	--azul: #94bdff;
+	--fuente: 'Poppins', sans-serif;
+	--fuente-titulo: 'Playfair Display', serif;
+}
+
+body {
+	font-family: var(--fuente);
+	background-color: white;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.year-nav {
+	width: 100%;
+	text-align: center;
+	background-color: #eee;
+	padding: 1rem;
+	position: sticky;
+	top: 0;
+	z-index: 10;
+}
+
+.year-nav a {
+	margin: 0 10px;
+	text-decoration: none;
+	color: #333;
+	font-weight: bold;
+}
+
+iframe {
+	width: 100%;
+	height: 90vh;
+	border: none;
+}
+
+.book {
+	width: 350px;
+	height: 450px;
+	position: relative;
+	transition-duration: 1s;
+	perspective: 1500;
+	margin-top: 2rem;
+}
+
+input {
+	display: none;
+}
+
+.cover, .back-cover {
+	width: 100%;
+	height: 100%;
+	border-radius: 0 15px 15px 0;
+	box-shadow: 0 0 5px rgb(41, 41, 41);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transform-origin: center left;
+}
+
+.cover {
+	position: absolute;
+	z-index: 4;
+	transition: transform 1s;
+	justify-content: center;
+}
+
+.cover label {
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+}
+
+.cover-title {
+	font-family: var(--fuente-titulo);
+	font-size: 4rem;
+	color: #ffffff;
+	text-align: center
+}
+
+.cover, .back-cover {
+	width: 100%;
+	height: 100%;
+	border-radius: 0 15px 15px 0;
+}
+
+.page {
+	position: absolute;
+	background-color: white;
+	width: 100%;
+	height: 100%;
+	border-radius: 0 15px 15px 0;
+	transform-origin: left;
+	transform-style: preserve-3d;
+	transform: rotateY(0deg);
+	transition-duration: 1.5s;
+}
+
+
+.page img {
+	width: 100%;
+	height: 100%;
+	border-radius: 15px 0 0 15px;
+	object-fit: cover;
+}
+
+.front-page, .back-page {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+	box-sizing: border-box;
+	padding: 1rem;
+}
+
+.back-page {
+	transform: rotateY(180deg);
+	z-index: 99;
+}
+
+.next, .prev {
+	position: absolute;
+	bottom: 1em;
+	cursor: pointer;
+	font-size: 1.5rem;
+}
+
+.next { right: 1em; }
+.prev { left: 1em; }
+
+#page1 { z-index: 3; }
+#page2 { z-index: 2; }
+#page3 { z-index: 1; }
+
+#checkbox-cover:checked ~ .book {
+	transform: translateX(200px);
+}
+
+#checkbox-cover:checked ~ .book .cover {
+	transform: rotateY(-180deg);
+	z-index: 1;
+	transition: transform 1.5s, z-index 0.5s 0.5s;
+}
+
+#checkbox-cover:checked ~ .book .page {
+	box-shadow: 0 0 3px rgb(99, 98, 98);
+}
+
+#checkbox-page1:checked ~ .book #page1 {
+	transform: rotateY(-180deg);
+	z-index: 2;
+}
+
+#checkbox-page2:checked ~ .book #page2 {
+	transform: rotateY(-180deg);
+	z-index: 3;
+}
+
+/* Colores distintos por año */
+.book-2018 .cover { background-color: var(--rosa); }
+.book-2019 .cover { background-color: var(--lila); }
+.book-2020 .cover { background-color: var(--azul); }
+.book-2021 .cover { background-color: var(--verde); }
+.book-2022 .cover { background-color: var(--lila); }
+.book-2023 .cover { background-color: var(--naranja); }
+.book-2024 .cover { background-color: var(--cyan); }
+.book-2025 .cover { background-color: var(--magenta); }
